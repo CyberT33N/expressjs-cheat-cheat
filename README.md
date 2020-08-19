@@ -54,14 +54,14 @@ app.use(express.static(__dirname + '/website'));
 # POST
 
 
-## parse application/json
+## Parse application/json
 ```javascript
 const bodyParser = require('body-parser');
 app.use(bodyParser.json());
 ```
 
 
-## recieve JSON
+## Recieve JSON
 ```javascript
 // Make sure to set the content type header at your POST request ( headers: {"Content-Type": "application/json"} )
 app.post('/square', function(req, res){
@@ -73,6 +73,18 @@ app.post('/square', function(req, res){
 app.use(function (req, res, next) {
   log( 'request.body: '  + req.body );      // your JSON
   res.send(req.body);    // echo the result back
+});
+```
+
+## Verfiy Content Type
+```javascript
+app.use('/api/', (req, res, next) => {
+    if (!req.is('application/json')) {
+        // Send error here
+        res.send(400);
+    } else {
+        // Do logic here
+    }
 });
 ```
 

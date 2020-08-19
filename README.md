@@ -33,3 +33,26 @@ res.render('./website/index.html');
 ```javascript
 app.use(express.static(__dirname + '/website'));
 ```
+
+
+
+
+<br />
+<br />
+
+
+ _____________________________________________________
+ _____________________________________________________
+
+
+<br />
+<br />
+
+
+# Postman
+
+
+
+
+## How to send JSON data to an API endpoint
+- https://www.youtube.com/watch?v=Jq5XIEsaVyE

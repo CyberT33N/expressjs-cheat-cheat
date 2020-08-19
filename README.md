@@ -28,3 +28,8 @@ app.get('/', function (req, res) {
 ```javascript
 res.render('./website/index.html');
 ```
+
+## Load full project
+```javascript
+app.use(express.static(__dirname + '/public'));
+```

@@ -68,6 +68,12 @@ app.post('/square', function(req, res){
   log( 'request.body: '  + req.body );      // your JSON
   res.send(req.body);    // echo the result back
 });
+
+// The example above will work for the route square. If you want to recieve data in general without route you can use
+app.use(function (req, res, next) {
+  log( 'request.body: '  + req.body );      // your JSON
+  res.send(req.body);    // echo the result back
+});
 ```
 
 <br />

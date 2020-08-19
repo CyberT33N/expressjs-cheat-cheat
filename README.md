@@ -23,3 +23,8 @@ app.get('/', function (req, res) {
   res.send('Hello World!')
 });
 ```
+
+## Load html file
+```javascript
+res.render('./website/index.html');
+```

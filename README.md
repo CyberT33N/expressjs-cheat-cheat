@@ -17,7 +17,7 @@ Express.js Cheat Sheet with the most needed stuff..
 
 # Routes
 
-## Respond with Hello World! on the homepage:
+## Homepage:
 ```javascript
 app.get('/', function (req, res) {
   res.send('Hello World!')
@@ -29,7 +29,7 @@ app.get('/', function (req, res) {
 res.render('./website/index.html');
 ```
 
-## Load full project
+## Load full project on homepage
 ```javascript
-app.use(express.static(__dirname + '/public'));
+app.use(express.static(__dirname + '/website'));
 ```

@@ -1,5 +1,6 @@
-# expressjs-cheat-cheat
+# Express.js Cheat Sheet
 Express.js Cheat Sheet with the most needed stuff..
+
 
 
 
@@ -37,6 +38,8 @@ app.use(express.static(__dirname + '/website'));
 
 
 
+
+
 <br />
 <br />
 
@@ -47,6 +50,37 @@ app.use(express.static(__dirname + '/website'));
 
 <br />
 <br />
+
+# POST
+
+
+## parse application/json
+```javascript
+const bodyParser = require('body-parser');
+app.use(bodyParser.json());
+```
+
+
+## recieve JSON
+```javascript
+// Make sure to set the content type header at your POST request ( headers: {"Content-Type": "application/json"} )
+app.post('/square', function(req, res){
+  log( 'request.body: '  + req.body );      // your JSON
+  res.send(req.body);    // echo the result back
+});
+```
+
+<br />
+<br />
+
+
+ _____________________________________________________
+ _____________________________________________________
+
+
+<br />
+<br />
+
 
 
 # Postman

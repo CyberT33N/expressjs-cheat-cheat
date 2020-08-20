@@ -121,7 +121,6 @@ https://www.npmjs.com/package/express-rate-limit
 
 const rateLimit = require('express-rate-limit');
 const limit = 60000;
-log( 'rate limit value: ' + limit );
 
 const apiLimiter = rateLimit({
        windowMs: limit, // How long the ip will be blocked until it´s avaible again

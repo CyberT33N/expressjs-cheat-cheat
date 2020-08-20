@@ -114,6 +114,26 @@ req.headers['authorization']
 https://www.npmjs.com/package/express-rate-limit
 
 
+```javascript
+// Enable if you're behind a reverse proxy (Heroku, Bluemix, AWS ELB, Nginx, etc)
+// see https://expressjs.com/en/guide/behind-proxies.html
+// app.set('trust proxy', 1);
+
+const rateLimit = require('express-rate-limit');
+const limit = 60000;
+log( 'rate limit value: ' + limit );
+
+const apiLimiter = rateLimit({
+       windowMs: limit, // How long the ip will be blocked until it´s avaible again
+       message: "Too many POST requests created from this IP, please try again in " + limit + "ms",
+       max: 1 // how many requests are allowed until ip get blocked. When the limit timer is over it will start again.
+});
+
+
+app.post('/square', apiLimiter, function(req, res){  });
+```
+
+
 
 <br />
 <br />

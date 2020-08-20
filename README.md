@@ -96,6 +96,25 @@ req.headers['authorization']
 ```
 
 
+
+<br />
+<br />
+
+
+ _____________________________________________________
+ _____________________________________________________
+
+
+<br />
+<br />
+
+# Rate Limit
+
+## Third party modules
+https://www.npmjs.com/package/express-rate-limit
+
+
+
 <br />
 <br />
 

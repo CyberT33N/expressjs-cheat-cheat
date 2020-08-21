@@ -96,6 +96,11 @@ req.headers['authorization']
 ```
 
 
+## Response Timeout
+```javascript
+var timeout = require('connect-timeout');
+app.post('/square', apiLimiter, timeout('20s'), function(req, res){  });
+```
 
 <br />
 <br />

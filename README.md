@@ -96,13 +96,13 @@ req.headers['authorization']
 ```
 
 
-## Response Timeout (socket hang up error)
+## Response Timeout
 - By default, normal HTTP requests to Node.js/Express/Sails.js apps time out after 2 minutes (120000 milliseconds) if a response is not sent.
 ```javascript
 //method #1 (recommended)
 app.post('/square', function(req, res){  req.setTimeout(400000);  });
 
-// method #2 (for me not working and I get socket hang up error)
+// method #2
 var timeout = require('connect-timeout');
 app.post('/square', apiLimiter, timeout('20s'), function(req, res){  });
 ```

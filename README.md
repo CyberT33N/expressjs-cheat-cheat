@@ -156,7 +156,19 @@ app.post('/square', apiLimiter, function(req, res){  });
 <br />
 <br />
 
+# OAuth
+https://auth0.com/blog/node-js-and-express-tutorial-building-and-securing-restful-apis/
 
+<br />
+<br />
+
+
+ _____________________________________________________
+ _____________________________________________________
+
+
+<br />
+<br />
 
 # Postman
 

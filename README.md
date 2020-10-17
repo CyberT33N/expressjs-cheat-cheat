@@ -179,7 +179,7 @@ log( 'PIZZA - DELETE REQUEST INCOMING.. Query: ' + JSON.stringify(req?.query, nu
 
 # Rate Limit
 
-## Third party modules
+## Middleware
 https://www.npmjs.com/package/express-rate-limit
 
 

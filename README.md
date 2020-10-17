@@ -2,8 +2,8 @@
 Express.js Cheat Sheet with the most needed stuff..
 
 
-
-
+# Status Codes
+https://developer.mozilla.org/de/docs/Web/HTTP/Status
 
 <br />
 <br />

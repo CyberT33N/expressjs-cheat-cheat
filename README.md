@@ -16,7 +16,7 @@ Express.js Cheat Sheet with the most needed stuff..
 <br />
 <br />
 
-# Routes
+# Website
 
 ## Homepage:
 ```javascript
@@ -38,8 +38,6 @@ app.use(express.static(__dirname + '/website'));
 
 
 
-
-
 <br />
 <br />
 
@@ -50,8 +48,6 @@ app.use(express.static(__dirname + '/website'));
 
 <br />
 <br />
-
-# POST
 
 
 ## Parse application/json
@@ -61,20 +57,6 @@ app.use(bodyParser.json());
 ```
 
 
-## Recieve JSON
-```javascript
-// Make sure to set the content type header at your POST request ( headers: {"Content-Type": "application/json"} )
-app.post('/square', function(req, res){
-  log( 'request.body: '  + req.body );      // your JSON
-  res.send(req.body);    // echo the result back
-});
-
-// The example above will work for the route square. If you want to recieve data in general without route you can use
-app.use(function (req, res, next) {
-  log( 'request.body: '  + req.body );      // your JSON
-  res.send(req.body);    // echo the result back
-});
-```
 
 ## Verfiy Content Type
 ```javascript
@@ -107,6 +89,82 @@ app.post('/square', function(req, res){  req.setTimeout(400000);  });
 var timeout = require('connect-timeout');
 app.post('/square', apiLimiter, timeout('20s'), function(req, res){  });
 ```
+
+<br />
+<br />
+
+
+ _____________________________________________________
+ _____________________________________________________
+
+
+<br />
+<br />
+
+# POST
+
+## Get params from POST request
+```javascript
+app.post('/pizza', apiLimiter, function(req, res){(async () => {
+log( 'PIZZA - POST REQUEST INCOMING.. Query: ' + JSON.stringify(req?.query, null, 4) );
+
+    if ( !req?.query?.id || !req?.query?.title ) {
+        const e = 'As it seems the POST request doesnt contain a valid ID & Title.. We cancel the request now..';
+        log(e);
+        res.send(e);
+        return;
+     }
+
+})().catch((e) => {  log('ASYNC - POST - Error at pizza Route.. Error: ' + e)  })});
+```
+
+## Recieve JSON from POST request
+```javascript
+// Make sure to set the content type header at your POST request ( headers: {"Content-Type": "application/json"} )
+app.post('/square', function(req, res){
+  log( 'request.body: '  + req.body );      // your JSON
+  res.send(req.body);    // echo the result back
+});
+
+// The example above will work for the route square. If you want to recieve data in general without route you can use
+app.use(function (req, res, next) {
+  log( 'request.body: '  + req.body );      // your JSON
+  res.send(req.body);    // echo the result back
+});
+```
+
+
+<br />
+<br />
+
+
+ _____________________________________________________
+ _____________________________________________________
+
+
+<br />
+<br />
+
+# DELETE
+
+## Get params from DELETE request
+```javascript
+app.delete('/pizza', apiLimiter, function(req, res){(async () => {
+log( 'PIZZA - DELETE REQUEST INCOMING.. Query: ' + JSON.stringify(req?.query, null, 4) );
+
+      if ( !req?.query?.id ) {
+            const e = 'As it seems the DELETE request doesnt contain a valid ID in the url.. We cancel the request now..';
+            log(e);
+            res.send(e);
+            return;
+       }
+
+})().catch((e) => {  log('ASYNC - DELETE - Error at pizza Route.. Error: ' + e)  })});
+```
+
+
+
+
 
 <br />
 <br />
@@ -170,10 +228,7 @@ https://auth0.com/blog/node-js-and-express-tutorial-building-and-securing-restfu
 <br />
 <br />
 
-# Postman
+# Simulate all kind of requests
 
-
-
-
-## How to send JSON data to an API endpoint
+## Postman
 - https://www.youtube.com/watch?v=Jq5XIEsaVyE

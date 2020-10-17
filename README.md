@@ -165,6 +165,36 @@ log( 'PIZZA - DELETE REQUEST INCOMING.. Query: ' + JSON.stringify(req?.query, nu
 
 
 
+<br />
+<br />
+
+
+ _____________________________________________________
+ _____________________________________________________
+
+
+<br />
+<br />
+
+# PUT
+
+## Get params from PUT request
+```javascript
+app.put('/pizza', apiLimiter, function(req, res){(async () => {
+log( 'PIZZA - PUT REQUEST INCOMING.. Query: ' + JSON.stringify(req?.query, null, 4) );
+
+      if ( !req?.query?.id || !req?.query?.title ) {
+            const e = 'As it seems the PUT request doesnt contain a valid ID & Title in the url.. We cancel the request now..';
+            log(e);
+            res.send(e);
+            return;
+       }
+
+})().catch((e) => {  log('ASYNC - PUT - Error at pizza Route.. Error: ' + e)  })});
+```
+
+
+
 
 <br />
 <br />

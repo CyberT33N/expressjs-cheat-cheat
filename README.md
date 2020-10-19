@@ -31,7 +31,7 @@ app.get('/', function (req, res) {
 res.render('./website/index.html');
 
 // method #2
-res.sendfile('./website/index.html');
+res.sendFile('./website/index.html');
 ```
 
 ## Load full project on homepage

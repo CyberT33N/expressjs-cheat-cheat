@@ -36,7 +36,14 @@ res.sendFile('./website/index.html');
 
 ## Load full project on homepage
 ```javascript
+// method #1
 app.use(express.static(__dirname + '/website'));
+
+// method #2
+app.use(function(req, res) {
+log( 'GET REQUEST INCOMING.. req.originalUrl: ' + req.originalUrl );
+
+}, express.static(__dirname + '/website'));
 ```
 
 

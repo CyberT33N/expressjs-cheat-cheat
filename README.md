@@ -28,10 +28,10 @@ app.get('/', function (req, res) {
 ## Load html file
 ```javascript
 // method #1
-res.render(__dirname + '/website');
+res.render(__dirname + '/website/index.html');
 
 // method #2
-res.sendFile(__dirname + '/website');
+res.sendFile(__dirname + '/website/index.html');
 ```
 
 ## Load full project on homepage

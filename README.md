@@ -245,7 +245,12 @@ app.post('/square', apiLimiter, function(req, res){  });
 <br />
 
 # OAuth
+
+## Third Party
 https://auth0.com/blog/node-js-and-express-tutorial-building-and-securing-restful-apis/
+
+## Internal
+http://thecodebarbarian.com/oauth-with-node-js-and-express.html
 
 <br />
 <br />

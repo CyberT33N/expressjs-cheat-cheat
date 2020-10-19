@@ -258,6 +258,27 @@ app.post('/square', apiLimiter, function(req, res){  });
 <br />
 <br />
 
+
+# SSL
+
+## Check if request is using SSL
+```javascript
+req.secure
+```
+
+
+<br />
+<br />
+
+
+ _____________________________________________________
+ _____________________________________________________
+
+
+<br />
+<br />
+
+
 # OAuth
 
 ## Third Party

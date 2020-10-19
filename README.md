@@ -27,7 +27,11 @@ app.get('/', function (req, res) {
 
 ## Load html file
 ```javascript
+// method #1
 res.render('./website/index.html');
+
+// method #2
+res.sendfile('./website/index.html');
 ```
 
 ## Load full project on homepage

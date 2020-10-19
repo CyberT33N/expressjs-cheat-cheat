@@ -40,7 +40,14 @@ res.sendFile('./website/index.html');
 app.use(express.static(__dirname + '/website'));
 ```
 
-
+## Access express.static
+```javascript
+app.use(function (req, res, next) {
+    log("The file " + path.basename(req.url) + " was requested.");
+    next();
+});
+app.use(express.static(__dirname + '/website'));
+```
 
 
 
@@ -201,31 +208,6 @@ log( 'PIZZA - PUT REQUEST INCOMING.. Query: ' + JSON.stringify(req?.query, null,
 
 
 
-
-
-<br />
-<br />
-
-
- _____________________________________________________
- _____________________________________________________
-
-
-<br />
-<br />
-
-# GET
-
-## Get all requests from the website
-```javascript
-app.use(express.static(__dirname + '/website'));
-
-app.use(function(req, res) {
-log( 'GET REQUEST INCOMING.. req.originalUrl: ' + req.originalUrl );
-
-});
-
-```
 
 
 <br />

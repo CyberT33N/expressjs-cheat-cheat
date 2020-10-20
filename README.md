@@ -40,13 +40,29 @@ res.sendFile(__dirname + '/website/index.html');
 app.use(express.static(__dirname + '/website'));
 ```
 
-## Access express.static
+
+<br />
+<br />
+
+
+ _____________________________________________________
+ _____________________________________________________
+
+
+<br />
+<br />
+
+
+## Access every request
 ```javascript
 app.use(function (req, res, next) {
-    log("The file " + path.basename(req.url) + " was requested.");
+
+    if( path.extname(path.basename(req.url)) ) log("The file " + path.basename(req?.url) + " was requested.");
+    else log("The folder " + path.basename(req?.url) + " was requested.");
+
     next();
+
 });
-app.use(express.static(__dirname + '/website'));
 ```
 
 

@@ -109,10 +109,13 @@ app.use('/api/', (req, res, next) => {
 ```
 
 
-## Get specific Header
+## Get Header details
 ```javascript
-// you can create any header you want and then get the data from it. Very usefully for tokens as example or other data
-req.headers['authorization']
+// get specific header
+req.headers['authorization'];
+
+// get all header details
+console.log( JSON.stringify(req.headers, null, 4) ):
 ```
 
 

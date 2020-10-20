@@ -79,6 +79,15 @@ app.use(function (req, res, next) {
 <br />
 
 
+
+## Change view engine (ejs, jade, ..)
+```javascript
+// global
+app.set('view engine', 'ejs');
+```
+
+
+
 ## Parse application/json
 ```javascript
 const bodyParser = require('body-parser');

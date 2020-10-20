@@ -58,7 +58,7 @@ app.use(express.static(__dirname + '/website'));
 app.use(function (req, res, next) {
 
     if( path.extname(path.basename(req.url)) ) log("The file " + path.basename(req?.url) + " was requested.");
-    else log("The folder " + path.basename(req?.url) + " was requested.");
+    else log("The endpoint " + path.basename(req?.url) + " was requested.");
 
     next();
 

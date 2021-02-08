@@ -46,12 +46,16 @@ https://developer.mozilla.org/de/docs/Web/HTTP/Status
 
 # Website
 
+<br><br>
+
 ## Homepage:
 ```javascript
 app.get('/', function (req, res) {
   res.send('Hello World!')
 });
 ```
+
+<br><br>
 
 ## Load html file
 ```javascript
@@ -61,6 +65,8 @@ res.render(__dirname + '/website/index.html');
 // method #2
 res.sendFile(__dirname + '/website/index.html');
 ```
+
+<br><br>
 
 ## Load full project on homepage
 ```javascript
@@ -133,23 +139,23 @@ app.use(express.static(__dirname + '/website'));
 
 
 
-## Change view engine (ejs, jade, ..)
+# Change view engine (ejs, jade, ..)
 ```javascript
 // global
 app.set('view engine', 'ejs');
 ```
+<br><br>
 
 
-
-## Parse application/json
+# Parse application/json
 ```javascript
 const bodyParser = require('body-parser');
 app.use(bodyParser.json());
 ```
 
+<br><br>
 
-
-## Verfiy Content Type
+# Verfiy Content Type
 ```javascript
 app.use('/api/', (req, res, next) => {
     if (!req.is('application/json')) {
@@ -161,8 +167,9 @@ app.use('/api/', (req, res, next) => {
 });
 ```
 
+<br><br>
 
-## Get Header details
+# Get Header details
 ```javascript
 // get specific header
 req.headers['authorization'];
@@ -171,8 +178,9 @@ req.headers['authorization'];
 console.log( JSON.stringify(req.headers, null, 4) ):
 ```
 
+<br><br>
 
-## Response Timeout (Socket hang up error)
+# Response Timeout (Socket hang up error)
 - By default, normal HTTP requests to Node.js/Express/Sails.js apps time out after 2 minutes (120000 milliseconds) if a response is not sent.
 - In some cases like as example on Google Cloud you get Socket hang up errors when you use port 80 for your express server. Make sure to use a different port like as example 1337 (https://www.youtube.com/watch?v=JmjqPpQdtW8)
 ```javascript
@@ -300,6 +308,133 @@ app.enabled('trust proxy')
 ```
 
 
+<br><br>
+
+## .engine()
+- Registers the given template engine callback as ext. By default, Express will require() the engine based on the file extension. For example, if you try to render a “foo.pug” file, Express invokes the following internally, and caches the require() on subsequent calls to increase performance.
+```javascript
+app.engine('html', require('ejs').renderFile)
+```
+
+
+
+<br><br>
+
+## .get(name)
+- Returns the value of name app setting, where name is one of the strings in the app settings table. For example:
+```javascript
+app.get('title')
+// => undefined
+
+app.set('title', 'My Site')
+app.get('title')
+// => "My Site"
+```
+
+
+
+<br><br>
+
+## .get(path, callback [, callback ...])
+- Routes HTTP GET requests to the specified path with the specified callback functions.
+```javascript
+app.get('/', function (req, res) {
+  res.send('GET request to homepage')
+})
+```
+
+
+
+<br><br>
+
+## .listen(path, [callback])
+- Starts a UNIX socket and listens for connections on the given path. This method is identical to Node’s http.Server.listen().
+```javascript
+var express = require('express')
+var app = express()
+app.listen('/tmp/sock')
+```
+
+
+
+
+<br><br>
+
+## .listen([port[, host[, backlog]]][, callback])
+- Binds and listens for connections on the specified host and port. This method is identical to Node’s http.Server.listen(). If port is omitted or is 0, the operating system will assign an arbitrary unused port, which is useful for cases like automated tasks (tests, etc.).
+```javascript
+var express = require('express')
+var app = express()
+app.listen(3000)
+
+
+
+// example #2
+var express = require('express')
+var https = require('https')
+var http = require('http')
+var app = express()
+
+http.createServer(app).listen(80)
+https.createServer(options, app).listen(443)
+```
+
+
+<br><br>
+
+## .METHOD(path, callback [, callback ...])
+- Routes an HTTP request, where METHOD is the HTTP method of the request, such as GET, PUT, POST, and so on, in lowercase. Thus, the actual methods are app.get(), app.post(), app.put(), and so on. See Routing methods below for the complete list.
+- Express supports the following routing methods corresponding to the HTTP methods of the same names:
+<br> checkout
+<br> copy
+<br> delete
+<br> get
+<br> head
+<br> lock
+<br> merge
+<br> mkactivity
+<br> mkcol
+<br> move
+<br> m-search
+<br> notify
+<br> options
+<br> patch
+<br> post
+<br> purge
+<br> put
+<br> report
+<br> search
+<br> subscribe
+<br> trace
+<br> unlock
+<br> unsubscribe
+
+
+
+
+
+
+
+
+<br><br>
+
+## .param(path, [callback])
+- Add callback triggers to route parameters, where name is the name of the parameter or an array of them, and callback is the callback function. The parameters of the callback function are the request object, the response object, the next middleware, the value of the parameter and the name of the parameter, in that order.
+```javascript
+app.param('user', function (req, res, next, id) {
+  // try to get the user details from the User model and attach it to the request object
+  User.find(id, function (err, user) {
+    if (err) {
+      next(err)
+    } else if (user) {
+      req.user = user
+      next()
+    } else {
+      next(new Error('failed to load user'))
+    }
+  })
+})
+```
 
 
 

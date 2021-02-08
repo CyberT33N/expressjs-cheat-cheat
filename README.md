@@ -275,36 +275,99 @@ app.post('/square', apiLimiter, function(req, res){  });
 
 
 
-<br />
-<br />
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<br><br>
  _____________________________________________________
  _____________________________________________________
+<br><br>
 
 
-<br />
-<br />
+# Route
 
-
-# SSL
-
-## Check if request is using SSL
+## Paramaters (http://expressjs.com/en/guide/routing.html#route-parameters)
+- Route parameters are named URL segments that are used to capture the values specified at their position in the URL. The captured values are populated in the req.params object, with the name of the route parameter specified in the path as their respective keys.
 ```javascript
-req.secure
+/*
+Route path: /users/:userId/books/:bookId
+Request URL: http://localhost:3000/users/34/books/8989
+req.params: { "userId": "34", "bookId": "8989" }
+*/
+
+app.get('/users/:userId/books/:bookId', function (req, res) {
+  res.send(req.params)
+})
 ```
 
 
-<br />
-<br />
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<br><br>
  _____________________________________________________
  _____________________________________________________
+<br><br>
 
-
-<br />
-<br />
 
 
 # OAuth

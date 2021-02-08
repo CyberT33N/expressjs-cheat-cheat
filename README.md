@@ -5,16 +5,44 @@ Express.js Cheat Sheet with the most needed stuff..
 # Status Codes
 https://developer.mozilla.org/de/docs/Web/HTTP/Status
 
-<br />
-<br />
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<br><br>
  _____________________________________________________
  _____________________________________________________
-
-
-<br />
-<br />
+<br><br>
 
 # Website
 
@@ -41,42 +69,67 @@ app.use(express.static(__dirname + '/website'));
 ```
 
 
-<br />
-<br />
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<br><br>
  _____________________________________________________
  _____________________________________________________
-
-
-<br />
-<br />
-
-
-## Access every request
-```javascript
-app.use(function (req, res, next) {
-
-    if( path.extname(path.basename(req.url)) ) log("The file " + path.basename(req?.url) + " was requested.");
-    else log("The endpoint " + path.basename(req?.url) + " was requested.");
-
-    next();
-
-});
-```
-
-
-
-<br />
-<br />
-
-
- _____________________________________________________
- _____________________________________________________
-
-
-<br />
-<br />
+<br><br>
 
 
 
@@ -131,16 +184,187 @@ var timeout = require('connect-timeout');
 app.post('/square', apiLimiter, timeout('20s'), function(req, res){  });
 ```
 
-<br />
-<br />
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<br><br>
  _____________________________________________________
  _____________________________________________________
+<br><br>
+
+# app
 
 
-<br />
-<br />
+<br><br>
+
+## .all()
+- This method is like the standard app.METHOD() methods, except it matches all HTTP verbs.
+- The following callback is executed for requests to /secret whether using GET, POST, PUT, DELETE, or any other HTTP request method:
+```javascript
+app.all('/secret', function (req, res, next) {
+  console.log('Accessing the secret section ...')
+  next() // pass control to the next handler
+})
+```
+
+<br><br>
+
+## .delete()
+- Routes HTTP DELETE requests to the specified path with the specified callback functions. For more information, see the routing guide.
+- The following callback is executed for requests to /secret whether using GET, POST, PUT, DELETE, or any other HTTP request method:
+```javascript
+app.delete('/', function (req, res) {
+  res.send('DELETE request to homepage')
+})
+```
+
+<br><br>
+
+## .disable()
+- Sets the Boolean setting name to false, where name is one of the properties from the app settings table. Calling app.set('foo', false) for a Boolean property is the same as calling app.disable('foo').
+```javascript
+app.disable('trust proxy')
+app.get('trust proxy')
+// => false
+```
+
+<br><br>
+
+## .disabled()
+- Returns true if the Boolean setting name is disabled (false), where name is one of the properties from the app settings table.
+```javascript
+app.disabled('trust proxy')
+// => true
+
+app.enable('trust proxy')
+app.disabled('trust proxy')
+// => false
+```
+
+
+
+<br><br>
+
+## .enable()
+- Returns true if the Boolean setting name is disabled (false), where name is one of the properties from the app settings table.
+```javascript
+app.enable('trust proxy')
+app.get('trust proxy')
+// => true
+```
+
+
+<br><br>
+
+## .enabled()
+- Returns true if the Boolean setting name is disabled (false), where name is one of the properties from the app settings table.
+```javascript
+app.enabled('trust proxy')
+// => false
+
+app.enable('trust proxy')
+app.enabled('trust proxy')
+// => true
+```
+
+
+
+
+
+
+
+<br><br>
+
+## Access every request
+```javascript
+app.use(function (req, res, next) {
+
+    if( path.extname(path.basename(req.url)) ) log("The file " + path.basename(req?.url) + " was requested.");
+    else log("The endpoint " + path.basename(req?.url) + " was requested.");
+
+    next();
+
+});
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<br><br>
+ _____________________________________________________
+ _____________________________________________________
+<br><br>
+
 
 # POST
 

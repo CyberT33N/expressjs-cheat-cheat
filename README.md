@@ -133,10 +133,16 @@ app.get('/', function (req, res) {
 ## Load html file
 ```javascript
 // method #1
-res.render(__dirname + '/website/index.html');
+// viewed at http://localhost:8080
+app.get('/', function(req, res) {
+    res.render(__dirname + '/website/index.html');
+});
 
 // method #2
-res.sendFile(__dirname + '/website/index.html');
+app.get('/', function(req, res) {
+    res.sendFile(__dirname + '/website/index.html');
+});
+
 ```
 
 <br><br>

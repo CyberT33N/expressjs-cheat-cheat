@@ -151,6 +151,11 @@ app.get('/', function(req, res) {
 ```javascript
 // method #1
 app.use(express.static(__dirname + '/website'));
+
+// method #2 go folder back
+const path = require('path')
+const folder = path.join(__dirname, '..', 'resources')
+app.use(express.static(folder))
 ```
 
 

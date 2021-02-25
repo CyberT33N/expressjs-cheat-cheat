@@ -4,7 +4,9 @@ Express.js Cheat Sheet with the most needed stuff..
 
 # Status Codes
 https://developer.mozilla.org/de/docs/Web/HTTP/Status
-
+```javascript
+res.status(400).json({ error: 'message' })
+```
 
 
 

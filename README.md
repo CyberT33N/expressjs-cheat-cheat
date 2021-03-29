@@ -350,6 +350,148 @@ app.post('/square', apiLimiter, timeout('20s'), function(req, res){  });
 
 
 
+<br><br>
+ _____________________________________________________
+ _____________________________________________________
+<br><br>
+
+# express.Router (https://expressjs.com/de/guide/routing.html)
+- Use the express.Router class to create modular, mountable route handlers. A Router instance is a complete middleware and routing system; for this reason, it is often referred to as a “mini-app”.
+
+<br><br>
+
+The following example creates a router as a module, loads a middleware function in it, defines some routes, and mounts the router module on a path in the main app.
+
+<br><br>
+
+Create a router file named birds.js in the app directory, with the following content:
+```javascript
+var express = require('express')
+var router = express.Router()
+
+// middleware that is specific to this router
+router.use(function timeLog (req, res, next) {
+  console.log('Time: ', Date.now())
+  next()
+})
+
+// define the home page route
+router.get('/', function (req, res) {
+  res.send('Birds home page')
+})
+
+// define the about route
+router.get('/about', function (req, res) {
+  res.send('About birds')
+})
+
+module.exports = router
+```
+
+
+
+
+<br><br>
+
+## Chain callback
+```javascript
+// routes.js
+var express = require('express')
+var router = express.Router()
+
+const {createImage, saveImage} = require('./services.js')
+
+router.post('/about', createImage, saveImage)
+
+
+
+
+// services.js
+const createImage = async () => {
+ // ..
+ req.transferData = 123
+ next()
+}
+
+const saveImage = async () => {
+ // ..
+ const useData = req.transferData
+}
+
+module.exports = {
+    createImage,
+    saveImage
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -660,16 +802,48 @@ app.use(function (req, res, next) {
 ```
 
 
-<br />
-<br />
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<br><br>
  _____________________________________________________
  _____________________________________________________
-
-
-<br />
-<br />
+<br><br>
 
 # DELETE
 
@@ -691,16 +865,73 @@ log( 'PIZZA - DELETE REQUEST INCOMING.. Query: ' + JSON.stringify(req?.query, nu
 
 
 
-<br />
-<br />
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<br><br>
  _____________________________________________________
  _____________________________________________________
+<br><br>
 
-
-<br />
-<br />
 
 # PUT
 
@@ -723,16 +954,49 @@ log( 'PIZZA - PUT REQUEST INCOMING.. Query: ' + JSON.stringify(req?.query, null,
 
 
 
-<br />
-<br />
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<br><br>
  _____________________________________________________
  _____________________________________________________
-
-
-<br />
-<br />
+<br><br>
 
 # Rate Limit
 
@@ -863,16 +1127,59 @@ https://auth0.com/blog/node-js-and-express-tutorial-building-and-securing-restfu
 ## Internal
 http://thecodebarbarian.com/oauth-with-node-js-and-express.html
 
-<br />
-<br />
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<br><br>
  _____________________________________________________
  _____________________________________________________
-
-
-<br />
-<br />
+<br><br>
 
 # Simulate all kind of requests
 

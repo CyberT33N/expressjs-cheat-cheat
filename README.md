@@ -73,6 +73,25 @@ app.listen(port, () => {
 
 
 
+<br><br>
+ _____________________________________________________
+ _____________________________________________________
+<br><br>
+
+# File Structur
+- https://www.geeksforgeeks.org/why-express-app-and-server-files-kept-separately/
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

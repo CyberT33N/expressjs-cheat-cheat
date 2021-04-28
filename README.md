@@ -9,6 +9,9 @@ res.status(400).json({ error: 'message' })
 res.status(200).send("SUCCESS")
 ```
 
+## Simulate Status Codes
+- https://httpstat.us/200
+
 
 
 

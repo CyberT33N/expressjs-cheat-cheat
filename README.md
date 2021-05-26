@@ -1191,6 +1191,113 @@ http://thecodebarbarian.com/oauth-with-node-js-and-express.html
 
 
 
+<br><br>
+ _____________________________________________________
+ _____________________________________________________
+<br><br>
+
+
+# Testing
+
+<br><br>
+
+## Supertest (https://www.npmjs.com/package/supertest)
+```javascript
+'use strict'
+
+const axios = require('axios')
+const http = require('http')
+const express = require('express')
+const router = express.Router()
+const app = express()
+const port = 6969
+
+app.post('/test', (req, res) => {
+  res.send('Hello World!')
+})
+
+app.listen(port, async () => {
+  console.log(`Example app listening at http://localhost:${port}`)
+  test()
+})
+
+const test = async () => {
+    const server = http.createServer(app)
+    const requestServer = require('supertest')(server)
+
+    const url = '/test'
+    const res = await requestServer.post(url)
+    console.log(res)
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

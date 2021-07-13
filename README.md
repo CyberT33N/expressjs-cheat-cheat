@@ -280,6 +280,106 @@ app.use(express.static(folder))
 
 
 
+
+<br><br>
+ _____________________________________________________
+ _____________________________________________________
+<br><br>
+
+# Middleware
+```javascript
+const express = require('express')
+const server = express()
+const port = 30558
+
+// Middleware #1
+server.use((req, res, next)=>{
+    // do something..
+    next()
+})
+
+// Middleware #2
+server.use((req, res, next)=>{
+    // do something..
+    next()
+})
+
+server.listen(port, () => {
+    console.log(`Example app listening at http://localhost:${port}`)
+})
+```
+
+
+<br><br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <br><br>
  _____________________________________________________
  _____________________________________________________

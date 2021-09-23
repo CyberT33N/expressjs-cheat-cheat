@@ -60,6 +60,9 @@ app.get('/', (req, res) => {
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`)
 })
+
+// you can use aswell await
+// await app.listen(port)
 ```
 
 
@@ -127,27 +130,9 @@ app.listen(port, () => {
 
 # Stop
 ```javascript
-/*---- METHOD #1 ----*/
 var server = app.listen(3000);
-
-// listen for an event
-var handler = function() {
-  server.close();
-};
-
-
-/*---- METHOD #2 - app.close() ----*/
-var app = require('express').createServer();
-app.get('/', function(req, res){
-  res.send('hello world');
-});
-app.get('/quit', function(req,res) {
-  res.send('closing..');
-  app.close();
-});
-app.listen(3000);
+await server.close();
 ```
-
 
 
 

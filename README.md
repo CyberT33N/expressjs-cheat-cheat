@@ -79,6 +79,180 @@ app.listen(port, () => {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<br><br>
+ _____________________________________________________
+ _____________________________________________________
+<br><br>
+
+# Error Handling
+
+<br><br>
+
+## Handle Async
+```javascript
+/* ---- Method #1 - Pass the error with next() ---- */
+app.get('/route', async(req, res, next) => {
+    try {
+        const result = await request('http://example.com');
+        res.end(result);
+    } catch(err) {
+        next(err);
+    }
+});
+
+
+
+
+/* ---- Method #2 - Custom handler ---- */
+const asyncHandler = fn => (req, res, next) => {
+    return Promise
+        .resolve(fn(req, res, next))
+        .catch(next);
+};
+
+app.use(asyncHandler(async(req, res, next) => {
+    await authenticate(req);
+    next();
+}));
+
+app.get('/async', asyncHandler(async(req, res) => {
+    const result = await request('http://example.com');
+    res.end(result);
+}));
+
+// Any rejection will go to the error handler
+
+
+
+
+
+
+
+
+/* ---- Method #3 - Plugin ---- */
+// https://github.com/davidbanham/express-async-errors/
+
+const express = require('express');
+require('express-async-errors');
+const User = require('./models/user');
+const app = express();
+
+app.get('/users', async (req, res) => {
+  const users = await User.findAll();
+  res.send(users);
+});
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <br><br>
  _____________________________________________________
  _____________________________________________________

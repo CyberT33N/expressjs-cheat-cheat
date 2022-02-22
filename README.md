@@ -469,20 +469,6 @@ app.listen(port, () => {
 ```
 
 
-<br><br>
-
-
-# Middleware that will throw Error if route is not found
-- The default express behaviour ist that all middlewares get executed as long you use next. To prevent this you can use this middleware in the beginning 
-```javascript
-app.use((req, res, next) => {
-    if (!req.route) {
-        return res.status(404).json({ error: `${req.url} could not be found on this server` })
-    }
-
-    next()
-})
-```
 
 
 

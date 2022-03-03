@@ -1551,6 +1551,59 @@ const test = async () => {
 
 
 
+<br><br>
+ _____________________________________________________
+ _____________________________________________________
+<br><br>
+
+# Make Requests faster
+
+
+## compression
+```
+const compression = require('compression')
+app.use(compression({ level: 9 }))
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

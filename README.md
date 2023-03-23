@@ -1386,6 +1386,89 @@ app.get('/users/:userId/books/:bookId', function (req, res) {
 
 
 
+<br><br>
+ _____________________________________________________
+ _____________________________________________________
+<br><br>
+
+
+
+# Redirect
+
+```javascript
+// Methode #1
+const proxy = require('express-http-proxy')
+
+const host = `${process.env.HOST}:${process.env.PORT0}`
+const options = {
+    proxyReqPathResolver: function (req) {
+      const redirectUrl = req.originalUrl.replace('/cs/apple', '/cs/banana')
+      return redirectUrl
+    }
+}
+app.use('/v1/cs/apple', proxy(host, options))
+
+
+
+
+// Method #2 - Only works for GET
+masterRouter.use('/v1/cs/apple', (req, res, next) => {
+    const redirectUrl = req.originalUrl.replace('/cs/apple', '/cs/banana')
+    res.redirect(302, redirectUrl)
+})
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

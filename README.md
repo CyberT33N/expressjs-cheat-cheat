@@ -472,7 +472,69 @@ app.listen(port, () => {
 
 
 
+<br><br>
 
+## Sanitize Response Body
+```
+app.use(sanitizeResponseBody)
+```
+
+```
+/**
+ * 
+ * @param {*} req 
+ * @param {*} res 
+ * @param {*} next 
+ */
+const sanitizeResponseBody = (req, res, next) => {
+    const oldJson = res.json
+
+    res.json = body => {
+        // Sometimes the body is from mongoose
+        // It is important that you not return a new variable. You must modify the original body
+        removePasswords(body.toObject ? body.toObject() : body)
+        res.locals.body = body
+        return oldJson.call(res, body)
+    }
+
+    next()
+}
+  
+
+/**
+ * Will sanitize the response body - Works nested with object and array
+ * @param {*} obj 
+ * @param {*} removals 
+ * @returns 
+ */
+const removePasswords = (obj, removals = process.env.RESPONSE_BODY_REMOVALS) => {
+  const arrRemovals = removals.split(',')
+
+  if (typeof obj === 'object' && obj !== null) {
+    if (Array.isArray(obj)) {
+      obj.forEach((item, index) => {
+        if (typeof item === 'object' && item !== null) {
+          obj[index] = removePasswords(item, removals)
+        }
+      })
+    } else {
+      for (let prop in obj) {
+        if (!arrRemovals.includes(prop)) {
+          if (typeof obj[prop] === 'object' && obj[prop] !== null) {
+            obj[prop] = removePasswords(obj[prop], removals)
+          }
+        } else {
+          delete obj[prop]
+        }
+      }
+    }
+  }
+
+  return obj
+}
+
+module.exports = sanitizeResponseBody
+```
 
 
 

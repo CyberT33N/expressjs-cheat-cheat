@@ -480,6 +480,7 @@ app.use(sanitizeResponseBody)
 ```
 
 ```
+
 /**
  * 
  * @param {*} req 
@@ -489,10 +490,9 @@ app.use(sanitizeResponseBody)
 const sanitizeResponseBody = (req, res, next) => {
     const oldJson = res.json
 
-    res.json = body => {
-        // Sometimes the body is from mongoose
-        // It is important that you not return a new variable. You must modify the original body
-        removePasswords(body.toObject ? body.toObject() : body)
+    res.json = body => { 
+        // It is important that you not return a new variable. You must modify the original body. If you return a new variable then you get an error that .toString() does not exists
+        removePasswords(body)
         res.locals.body = body
         return oldJson.call(res, body)
     }
@@ -500,7 +500,6 @@ const sanitizeResponseBody = (req, res, next) => {
     next()
 }
   
-
 /**
  * Will sanitize the response body - Works nested with object and array
  * @param {*} obj 
@@ -509,6 +508,8 @@ const sanitizeResponseBody = (req, res, next) => {
  */
 const removePasswords = (obj, removals = process.env.RESPONSE_BODY_REMOVALS) => {
   const arrRemovals = removals.split(',')
+  // Sometimes the body is from mongoose, so we check for toObject()
+  obj = obj.toObject ? obj.toObject() : obj
 
   if (typeof obj === 'object' && obj !== null) {
     if (Array.isArray(obj)) {
@@ -532,6 +533,7 @@ const removePasswords = (obj, removals = process.env.RESPONSE_BODY_REMOVALS) => 
 
   return obj
 }
+
 
 module.exports = sanitizeResponseBody
 ```

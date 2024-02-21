@@ -471,7 +471,7 @@ app.listen(port, () => {
 
 
 
-
+<br><br>
 <br><br>
 
 ## Sanitize Response Body
@@ -540,7 +540,95 @@ module.exports = sanitizeResponseBody
 
 
 
+<br><br>
+<br><br>
 
+## Form Data & Formular Data
+
+server.js
+```
+const app = express()
+
+// Middleware zum Parsen von URL-encodierten Daten
+app.use(bodyParser.json({ limit: '50mb' }))
+app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }))
+```
+
+routes.js
+```javascript
+const multer = require('multer')
+const storage = multer.memoryStorage()
+const uploadMiddleware = multer({
+    storage: storage,
+    limits: { fileSize:16*1024*1024 } // accepted limit of file size
+})
+
+router.post(`${routeBase}/:id/execute`, uploadMiddleware.single('file'), executeDatasourceById)
+```
+
+controller.js
+```javascript
+const executeDatasourceById = async (req, res) => {
+    const { id } = req.params
+    const { body, file } = req
+
+    const data = await executeDatasourceById(id, body, file)
+    res.status(200).json(data)
+}
+```
+
+service.js
+- In this example we reuse the form & formular data to send it to a different source
+```javascript
+if (
+     headers['Content-Type'] === 'multipart/form-data' ||
+     headers['content-type'] === 'multipart/form-data' 
+ ) {
+     const formData = new FormData()
+     const { fieldname, originalname, buffer } = file
+
+     formData.append(fieldname, buffer, originalname)
+
+     for (const key in data) {
+         formData.append(key, data[key])
+     }
+
+     // Remove content-type from headers because it is set by FormData
+     const filteredHeaders = Object.keys(headers).reduce((acc, key) => {
+         if (key.toLowerCase() !== 'content-type') {
+             acc[key] = headers[key]
+         }
+         return acc
+     }, {})
+
+     options.headers = { ...filteredHeaders, ...formData.getHeaders() }
+
+     try {
+         const res = await axios.post(url, formData, options)
+         return res
+     } catch (e) {
+         throw new HttpClientError('_sendRequestToProxy() - Form Data - Can not send request to datasource proxy', e)
+     }
+ }
+ 
+ if (
+     headers['Content-Type'] === 'application/x-www-form-urlencoded' ||
+     headers['content-type'] === 'application/x-www-form-urlencoded'
+ ) {
+     const params = new URLSearchParams()
+
+     for (const key in data) {
+         params.append(key, data[key])
+     }
+     
+     try {
+         const res = await axios.post(url, params, options)
+         return res
+     } catch (e) {
+         throw new HttpClientError('_sendRequestToProxy() - Forumular Data - Can not send request to datasource proxy', e)
+     }
+ }
+```
 
 
 

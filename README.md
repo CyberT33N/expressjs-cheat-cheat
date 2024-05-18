@@ -193,6 +193,42 @@ app.get('/users', async (req, res) => {
 
 
 
+<br><br>
+
+## Error Handler Middleware
+- Use throw err instead of passing it to next. Using throw will redirect the request to the general express error handling middleware.
+- The next callback isn't used for passing errors/data to other middleware/routes. The next is used to continue the flow in the case that the middleware did its thing successfully.
+- Error Handle Middleware has 4 arguments instead of normale middleware with 3
+```
+// auth middelwhere
+app.use((req,res,next)=>{
+    const jwt = JWT.decode(req.headers['Authorization'])
+    if(jwt) {
+       req.data.user = jwt; // append additional data to req context next middleware/routr
+       next();              // user is authenticated go to next middleware/routr
+    }
+    else {
+        // (1) use throw to pass error to "generic error handler"
+        throw new Error('unable_to_authenticate');
+        // (2) or handle error in the middleware
+        res.status(401);
+        res.end(); // Note: Don't call next() when resolving the request in the middleware
+    }
+})
+
+// generic error handler
+app.use((err,req,res,next) => {
+  if(err.message === "unable_to_authenticate"){ 
+     res.status(401);
+     res.end(); 
+  } 
+  else if(...) { ... }
+  else {
+     res.status(500);
+     res.end(); 
+  }
+})
+```
 
 
 

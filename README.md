@@ -199,6 +199,7 @@ app.get('/users', async (req, res) => {
 - Use throw err instead of passing it to next. Using throw will redirect the request to the general express error handling middleware.
 - The next callback isn't used for passing errors/data to other middleware/routes. The next is used to continue the flow in the case that the middleware did its thing successfully.
 - Error Handle Middleware has 4 arguments instead of normale middleware with 3
+- **You must use arrow functions for eror handling middleware**
 ```
 // auth middelwhere
 app.use((req,res,next)=>{

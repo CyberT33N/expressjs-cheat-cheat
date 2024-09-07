@@ -2,6 +2,49 @@
 Express.js Cheat Sheet with the most needed stuff..
 
 
+
+
+
+# Typescript
+
+<br><br>
+
+## Middleware
+```typescript
+import { Request, Response, NextFunction } from 'express';
+
+// Beispiel einer Middleware-Funktion mit TypeScript-Typen
+const exampleMiddleware = (req: Request, res: Response, next: NextFunction) => {
+    console.log(`Request URL: ${req.url}`);
+    
+    // Bearbeitung oder Prüfung des Requests
+    if (req.headers['authorization']) {
+        next(); // Weiter zur nächsten Middleware oder Route
+    } else {
+        res.status(401).send('Unauthorized'); // Antwort bei Fehler oder ungültiger Anfrage
+    }
+};
+
+export default exampleMiddleware;
+```
+
+
+
+
+
+
+
+
+
+
+<br><br>
+<br><br>
+ _____________________________________________________
+ _____________________________________________________
+<br><br>
+<br><br>
+
+
 # Status Codes
 https://developer.mozilla.org/de/docs/Web/HTTP/Status
 ```javascript
@@ -41,10 +84,11 @@ res.status(200).send("SUCCESS")
 
 
 
-
+<br><br>
 <br><br>
  _____________________________________________________
  _____________________________________________________
+<br><br>
 <br><br>
 
 # Hello World

@@ -9,7 +9,19 @@ Express.js Cheat Sheet with the most needed stuff..
 
 <br><br>
 
+
+## Error Middleware
+```typescript
+import type { ErrorRequestHandler } from "express";
+
+const errorHandler: ErrorRequestHandler = (err, req, res, next) => {};
+
+app.use(errorHandler);
+
+```
+
 ## Middleware
+
 
 ### Option #1
 ```typescript

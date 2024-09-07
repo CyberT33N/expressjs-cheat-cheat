@@ -10,6 +10,18 @@ Express.js Cheat Sheet with the most needed stuff..
 <br><br>
 
 ## Middleware
+
+### Option #1
+```typescript
+import type { RequestHandler } from "express";
+
+export const myMiddleware: RequestHandler = (req, res, next) => {
+  // HANDLE REQUEST
+  // RESPOND OR CALL NEXT()
+};
+```
+
+### Option #2
 ```typescript
 import { Request, Response, NextFunction } from 'express';
 

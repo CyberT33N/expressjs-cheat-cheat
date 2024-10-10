@@ -20,8 +20,13 @@ app.use(errorHandler);
 
 ```
 
+
+<br><br>
+<br><br>
+
 ## Middleware
 
+<br><br>
 
 ### Option #1
 ```typescript
@@ -51,6 +56,52 @@ const exampleMiddleware = (req: Request, res: Response, next: NextFunction) => {
 
 export default exampleMiddleware;
 ```
+
+
+
+
+### Async Callback
+- If you using await inside of your middleware callback you will get with tseslint this error (https://typescript-eslint.io/rules/no-misused-promises/). To prevent you can re-write it like this
+
+Method #1:
+```typescript
+// Sample route to trigger HttpClientError
+app.get('/httpclient-error', (): void => {
+    axios.get(`${BASE_URL}/notFound`)
+        .then(() => {
+            // handle successful response
+        })
+        .catch((e: AxiosError) => {
+            // do something
+        })
+})
+```
+
+Method #2:
+```typescript
+router.get("/", function(request: Request, response: Response): void {
+  void (async function(): Promise<void> {
+    // do your asychronous work here
+    response.json(/* put your payload here */);
+  })();
+});
+```
+
+However, if your are working with [express-async-errors](https://www.npmjs.com/package/express-async-errors) then this will not work because your callback must be an async function. So for this case you must use the rule:
+```typescript
+'@typescript-eslint/no-misused-promises': [
+    'error',
+    {
+        'checksVoidReturn': false
+    }
+]
+```
+
+
+
+
+
+
 
 
 

@@ -87,7 +87,17 @@ router.get("/", function(request: Request, response: Response): void {
 });
 ```
 
-However, if your are working with [express-async-errors](https://www.npmjs.com/package/express-async-errors) then this will not work because your callback must be an async function. So for this case you must use the rule:
+However, if your are working with [express-async-errors](https://www.npmjs.com/package/express-async-errors) and your callback is able to throw a new error, then this will not work because your callback must be an async function. So for this case you must use the rule:
+```typescript
+ // Sample route to trigger HttpClientError
+    app.get('/httpclient-error', async() => {
+        try {
+            await axios.get(`${BASE_URL}/notFound`)
+        } catch (e) {
+            throw new HttpClientError(errorMessage, e as AxiosError)
+        }
+    })
+```
 ```typescript
 '@typescript-eslint/no-misused-promises': [
     'error',

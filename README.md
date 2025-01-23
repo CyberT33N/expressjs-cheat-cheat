@@ -1977,6 +1977,18 @@ app.use(compression({ level: 9 }))
 
 
 
+<br><br>
+ _____________________________________________________
+ _____________________________________________________
+<br><br>
+
+# Security
+
+<br><br>
+
+## HTTP Parameter Pollution attacks
+- https://www.npmjs.com/package/hpp
+
 
 
 

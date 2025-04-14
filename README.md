@@ -7,6 +7,33 @@ Express.js Cheat Sheet with the most needed stuff..
 
 # Typescript
 
+## Server
+
+Wenn ich hier eine **Klasse** habe und ich setze `thisServer` dann auf die **Expressinstanz**, die ich starte, was für einen **Typ** müsste ich dann setzen bei `thisServer` oben in der **Klassenmodifikation**?
+
+Um den Typ für `thisServer` korrekt zu setzen, sollten Sie den Typ verwenden, der von der Express-Bibliothek für Serverinstanzen bereitgestellt wird. In der Regel ist dies `http.Server`, da Express auf dem Node.js `http`-Modul basiert. Hier ist ein Beispiel, wie Sie den Typ in TypeScript setzen könnten:
+
+```typescript
+import { Server } from 'http';
+
+class MyClass {
+  private thisServer: Server;
+
+  constructor() {
+    const express = require('express');
+    const app = express();
+    this.thisServer = app.listen(3000, () => {
+      console.log('Server läuft auf Port 3000');
+    });
+  }
+}
+```
+
+In diesem Beispiel wird `thisServer` als `Server` vom `http`-Modul typisiert. Dies ist der korrekte Typ für eine Express-Serverinstanz. 
+
+
+
+<br><br>
 <br><br>
 
 
